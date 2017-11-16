@@ -22,4 +22,20 @@ public class Contact {
     public String getPhoneNumber() {
         return phoneNumber;
     }
+
+    @Override
+    public String toString() {
+        String affichage = "";
+        if (getName() != null) {
+            affichage += getName() + ", ";
+        }
+        if (getEmail() != null) {
+            affichage += getEmail() + ", ";
+        }
+        if (getPhoneNumber() != null) {
+            affichage += getPhoneNumber() + ", ";
+        }
+
+        return affichage.substring(0,affichage.length()-2);
+    }
 }
