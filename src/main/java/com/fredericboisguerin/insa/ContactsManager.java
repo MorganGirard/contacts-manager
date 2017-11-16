@@ -12,7 +12,7 @@ public class ContactsManager {
     public void addContact(String name, String email, String phoneNumber) throws InvalidContactNameException, InvalidEmailException {
         if(name == null || name=="") {
             throw new InvalidContactNameException();
-        } else if (!email.contains("@")) {
+        } else if (email != null && !email.contains("@")) {
             throw new InvalidEmailException();
         }
 
