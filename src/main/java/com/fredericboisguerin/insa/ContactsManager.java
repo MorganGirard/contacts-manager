@@ -9,7 +9,13 @@ public class ContactsManager {
 
     private ArrayList<Contact> contactsList;
 
-    public void addContact(String name, String email, String phoneNumber) {
+    public void addContact(String name, String email, String phoneNumber) throws InvalidContactNameException, InvalidEmailException {
+        if(name == null || name=="") {
+            throw new InvalidContactNameException();
+        } else if (!email.contains("@")) {
+            throw new InvalidEmailException();
+        }
+
         Contact contactAjoute = new Contact(name,email,phoneNumber);
         this.contactsList.add(contactAjoute);
     }
