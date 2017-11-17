@@ -1,5 +1,7 @@
 package com.fredericboisguerin.insa;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Prompt {
@@ -26,6 +28,22 @@ public class Prompt {
         cm.searchContactByName(nom);
     }
 
+    private void saveData() {
+        try {
+            cm.saveTo("Directory.csv");
+        } catch (IOException e) {
+            System.out.println("Le nom du fichier est incorrect");
+        }
+    }
+
+    private void readData() {
+        try {
+            cm.readFrom("Directory.csv");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void mainLoop() {
         cm = new ContactsManager();
         sc = new Scanner(System.in);
@@ -39,8 +57,12 @@ public class Prompt {
                 afficherContacts();
             } else if(command.equals("show")) {
                 afficherContact(sc.next());
-            } else {
-                System.out.println("Aide: Utiliser add ou show ou showAll ou quit");
+            } else if(command.equals("saveData")){
+                saveData();
+            } else if(command.equals("readData")){
+                readData();
+            }else {
+                System.out.println("Aide: Utiliser add ou show ou showAll ou saveData ou readData quit");
             }
             System.out.println("> ");
             command = sc.next();
